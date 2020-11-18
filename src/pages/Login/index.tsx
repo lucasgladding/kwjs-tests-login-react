@@ -4,11 +4,14 @@ import Authentication from '../../services/Authentication';
 import Login, { LoginEvent } from './Login';
 
 interface LoginContainerProps {
-  authentication: Authentication;
+  authentication?: Authentication;
   onLogin(): void;
 }
 
-const LoginContainer: React.FunctionComponent<LoginContainerProps> = ({ authentication, onLogin }) => {
+const LoginContainer: React.FunctionComponent<LoginContainerProps> = ({ 
+  authentication = new Authentication(), 
+  onLogin 
+}) => {
   const handleLoginEvent = (data: LoginEvent) => {
     authentication.authenticate(data);
     onLogin();
